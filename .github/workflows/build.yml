@@ -1,0 +1,22 @@
+name: Build EXE
+on: [push] # 只要你 push 代码，它就自动开始打包
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          pip install customtkinter jmcomic pyinstaller
+      - name: Build
+        run: |
+          pyinstaller --noconsole --onefile --collect-all customtkinter --collect-all jmcomic main.py
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-exe
+          path: dist/*.exe
