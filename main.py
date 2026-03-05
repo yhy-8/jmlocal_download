@@ -17,7 +17,7 @@ class ComicDownloaderApp(ctk.CTk):
         super().__init__()
 
         self.title("JMComic 漫画下载器 (CBZ打包版)")
-        self.geometry("800x600")
+        self.geometry("600x400")
         self.minsize(500, 350)
         self.resizable(True, True)
 
